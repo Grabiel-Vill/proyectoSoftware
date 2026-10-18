@@ -1,0 +1,193 @@
+/* ===== Login (panel dividido, colores institucionales UCV: azul marino + rojo) ===== */
+.pagina-login {
+  --lg-navy-1: #061226;
+  --lg-navy-2: #0b2a55;
+  --lg-navy-3: #123a73;
+  --lg-red: #dc2020;
+  --lg-red-dark: #b91414;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  font-size: var(--texto-base);
+  background: #f3f5f9;
+}
+
+/* Panel izquierdo: escena de laboratorio + velo azul marino + bienvenida. */
+.login-panel-marca {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3.5rem 3rem 2.5rem;
+  color: #fff;
+  background: var(--lg-navy-1) url("../assets/fondo-laboratorio.jpg") center / cover no-repeat;
+  overflow: hidden;
+  isolation: isolate;
+}
+.login-escena { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.login-panel-velo {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(11,42,85,.72) 0%, rgba(8,32,68,.88) 42%, var(--lg-navy-2) 62%, var(--lg-navy-1) 100%);
+}
+.login-panel-contenido { max-width: 36rem; margin: 0 auto 4rem; text-align: center; animation: login-entra .7s ease both; }
+.login-panel-etiqueta {
+  margin: 0 0 .5rem;
+  font-family: "Sora", var(--fuente-base);
+  font-size: 1.9rem; font-weight: 700; letter-spacing: .01em; text-transform: uppercase;
+}
+.pagina-login .login-panel-titulo {
+  color: #fff;
+  margin: 0 0 var(--espacio-md);
+  font-family: "Sora", var(--fuente-base);
+  font-weight: 700; font-size: 2.5rem; line-height: 1.15; letter-spacing: -.015em; text-wrap: balance;
+}
+.login-panel-titulo::after {
+  content: ""; display: block; width: 3.5rem; height: 4px; margin: 1.1rem auto 0;
+  border-radius: 4px; background: var(--lg-red);
+}
+.login-panel-sub { margin: 0; font-size: var(--texto-md); line-height: 1.55; color: rgba(255,255,255,.75); }
+.login-panel-pie {
+  text-align: center; font-size: var(--texto-md); font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.85);
+}
+
+/* Panel derecho: tarjeta flotante sobre fondo gris claro. */
+.login-panel-formulario {
+  display: flex; align-items: center; justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background:
+    radial-gradient(900px 500px at 85% 10%, rgba(220,32,32,.06), transparent 60%),
+    radial-gradient(800px 500px at 10% 100%, rgba(18,58,115,.07), transparent 60%),
+    #f3f5f9;
+}
+.login-tarjeta {
+  width: 100%; max-width: 26rem;
+  display: flex; flex-direction: column; gap: 1.4rem;
+  padding: 2.25rem 2.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid #e6eaf1; border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 18px 48px rgba(15,23,42,.10);
+  animation: login-entra .6s ease both;
+}
+.login-marca { display: flex; align-items: center; }
+.login-logo { height: 3.1rem; }
+.login-logo svg, .login-logo img { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; }
+
+.login-encabezado { margin: 0 0 .6rem; }
+.pagina-login .login-encabezado h2 {
+  margin: 0; font-family: "Sora", var(--fuente-base); font-weight: 700;
+  font-size: 1.45rem; letter-spacing: -.02em; line-height: 1.2; color: var(--gris-900); }
+.login-encabezado p { display: none; }
+
+.formulario-login { display: flex; flex-direction: column; gap: 1rem; }
+.formulario-login label { font-size: var(--texto-sm); font-weight: 500; color: var(--gris-700); margin-bottom: .3rem; display: block; }
+
+.login-caja { position: relative; display: flex; align-items: center; }
+.login-caja input {
+  width: 100%; height: 2.9rem; font-size: var(--texto-base);
+  padding-left: 2.6rem; padding-right: .9rem;
+  background: #fff; border: 1px solid var(--gris-200); border-radius: 9px;
+  transition: border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+.login-caja input::placeholder { color: var(--gris-400); }
+.login-caja input:hover { border-color: var(--gris-300); }
+.login-caja input:focus {
+  outline: none; border-color: var(--lg-navy-3); box-shadow: 0 0 0 4px rgba(18,58,115,.14);
+}
+.login-caja:has(.login-ojo) input { padding-right: 2.9rem; }
+.login-caja-icono {
+  position: absolute; left: .85rem; display: inline-flex; color: var(--gris-400);
+  pointer-events: none; transition: color var(--transicion-rapida);
+}
+.login-caja:focus-within .login-caja-icono { color: var(--lg-navy-3); }
+.login-ojo {
+  position: absolute; right: .35rem; width: 2.2rem; height: 2.2rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 7px; background: transparent; color: var(--gris-400); cursor: pointer;
+  transition: color var(--transicion-rapida), background-color var(--transicion-rapida);
+}
+.login-ojo:hover { color: var(--gris-700); background: var(--gris-100); }
+.login-ojo:focus-visible { outline: 2px solid var(--lg-navy-3); outline-offset: 2px; }
+
+.login-aviso { min-height: 0; margin-top: 4px; font-size: var(--texto-xs); color: var(--alerta-600); }
+.login-aviso:empty { display: none; }
+.login-aviso.error { color: var(--peligro-600); }
+.campo-formulario.con-error input { border-color: var(--peligro-500); box-shadow: 0 0 0 4px var(--peligro-50); }
+
+.formulario-login .mensaje-error:empty { display: none; }
+.formulario-login .mensaje-error {
+  margin: 0; padding: .65rem .85rem; border-radius: 8px;
+  background: var(--peligro-50); color: var(--peligro-600); font-size: var(--texto-sm);
+  border: 1px solid #fecaca;
+}
+
+.formulario-login .login-boton {
+  width: 100%; height: 2.95rem; margin-top: .25rem; font-size: var(--texto-base); font-weight: 600;
+  color: #fff; border: 0; border-radius: 9px; cursor: pointer;
+  background: linear-gradient(180deg, #e32b2b, var(--lg-red-dark));
+  box-shadow: 0 6px 16px rgba(220,32,32,.30);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida), filter var(--transicion-rapida);
+}
+.formulario-login .login-boton:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(220,32,32,.38); filter: brightness(1.04); }
+.formulario-login .login-boton:active:not(:disabled) { transform: translateY(0); }
+.formulario-login .login-boton:focus-visible { outline: 3px solid rgba(18,58,115,.35); outline-offset: 2px; }
+.formulario-login .login-boton:disabled { opacity: .75; cursor: progress; }
+
+.login-enlaces { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: var(--texto-sm); }
+.login-enlaces a { color: var(--gris-600); text-decoration: none; }
+.login-enlaces a:hover { color: var(--lg-red); text-decoration: underline; }
+
+.login-pie-pagina {
+  display: flex; text-align: center; flex-wrap: wrap; justify-content: center; align-items: center; gap: .25rem 0;
+  margin-top: .5rem; padding-top: 1rem; border-top: 1px solid var(--gris-100);
+  font-size: var(--texto-xs); color: var(--gris-500);
+}
+.login-pie-pagina a { color: var(--gris-600); text-decoration: none; padding-right: .75rem; margin-right: .75rem; border-right: 1px solid var(--gris-200); }
+.login-pie-pagina a:hover { color: var(--lg-red); }
+.login-pie-pagina a:last-of-type { border-right: 0; }
+
+.login-spinner {
+  width: 1rem; height: 1rem; margin-right: .5rem;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%;
+  animation: login-giro .7s linear infinite;
+}
+@keyframes login-giro { to { transform: rotate(360deg); } }
+@keyframes login-entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .login-tarjeta, .login-panel-contenido { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .pagina-login { grid-template-columns: 1fr; }
+  .login-panel-marca { padding: 3rem 1.5rem 1.75rem; min-height: 22rem; }
+  .login-panel-contenido { margin-bottom: 1.75rem; }
+  .login-panel-etiqueta { font-size: 1.3rem; }
+  .login-panel-titulo { font-size: 1.85rem; }
+  .login-panel-sub { display: none; }
+  .login-panel-formulario { padding: 1.5rem 1rem 2.5rem; }
+}
+@media (max-width: 480px) {
+  .login-tarjeta { padding: 1.75rem 1.4rem 1.25rem; }
+  .login-panel-marca { min-height: 20rem; }
+  .login-panel-titulo { font-size: 1.6rem; }
+}
+
+
+/* Dashboard administrativo */
+.contenedor-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--espacio-md);
+}
+
+.contenedor-graficos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-lg);
+}
+
+@media (min-width: 900px) {
+  .contenedor-graficos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
